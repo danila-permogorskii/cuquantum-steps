@@ -53,32 +53,32 @@ message(STATUS "cuQuantum library dir: ${CUQUANTUM_LIBRARY_DIR}")
 include_directories("/usr/include")
 
 # Create the executable
-add_executable(cuquantum_example main.cu)
+add_executable(quantum main.cu)
 
 # Use modern target-based include and linking
-target_include_directories(cuquantum_example PRIVATE
+target_include_directories(quantum PRIVATE
         ${CUQUANTUM_INCLUDE_DIR}
 )
 
 # Use target_link_directories for library paths
-target_link_directories(cuquantum_example PRIVATE
+target_link_directories(quantum PRIVATE
         ${CUQUANTUM_LIBRARY_DIR}
 )
 
 # Link the libraries
-target_link_libraries(cuquantum_example PRIVATE
+target_link_libraries(quantum PRIVATE
         CUDA::cudart
         custatevec
         cutensornet
 )
 
 # Set target properties
-set_target_properties(cuquantum_example PROPERTIES
+set_target_properties(quantum PROPERTIES
         CUDA_SEPARABLE_COMPILATION ON
 )
 
 # Add install rules
-install(TARGETS cuquantum_example
+install(TARGETS quantum
         RUNTIME DESTINATION bin
 )
 
